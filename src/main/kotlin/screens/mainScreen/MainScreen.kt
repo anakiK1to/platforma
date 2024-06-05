@@ -65,6 +65,9 @@ fun mainScreen() {
                 MainScreenNavigation.FLOOR_ALLOCATION -> {
                     FloorAllocation()
                 }
+                MainScreenNavigation.MENU_CONFIGURATION -> {
+                    MenuConfiguration()
+                }
                 else -> {
 
                 }

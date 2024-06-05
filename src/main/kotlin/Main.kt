@@ -1,10 +1,15 @@
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Typography
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontStyle
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.platform.Font
 import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.WindowPlacement
 import androidx.compose.ui.window.WindowState
@@ -44,6 +49,15 @@ fun main() = application {
                 primary = Color.Black,
                 onPrimary = Color.White,
                 onBackground = Color.Black
+            ),
+            typography = Typography(
+                defaultFontFamily = FontFamily(
+                    Font(
+                        resource = "Roboto-Medium.ttf",
+                        weight = FontWeight.W400,
+                        style = FontStyle.Normal
+                    )
+                )
             )
         ) {
             if (isSplashScreenShowing) {

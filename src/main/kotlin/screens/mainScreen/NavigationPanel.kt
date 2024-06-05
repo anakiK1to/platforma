@@ -32,10 +32,10 @@ fun NavigationPanel(onClick: (MainScreenNavigation) -> Unit) {
     val icons = listOf(
         Icons.Filled.Settings,
         Icons.Filled.Add,
-        Icons.Filled.AdminPanelSettings,
-        Icons.Filled.Markunread,
-        Icons.Filled.Chat,
-        Icons.Filled.ChangeCircle
+        Icons.Filled.RestaurantMenu,
+        Icons.Filled.Timeline,
+        Icons.Filled.BugReport,
+        Icons.Filled.WbSunny
     )
     Row() {
         NavigationRail(Modifier.width(120.dp)) {

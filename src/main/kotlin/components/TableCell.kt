@@ -7,7 +7,7 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.onClick
-import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.Icon
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.derivedStateOf
@@ -15,6 +15,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.input.pointer.PointerIcon
 import androidx.compose.ui.input.pointer.pointerHoverIcon
 import androidx.compose.ui.text.style.TextAlign
@@ -42,6 +43,56 @@ fun RowScope.TableHeader(
             modifier = Modifier
                 .padding(8.dp),
             textAlign = TextAlign.Justify
+        )
+    }
+}
+
+@Composable
+fun RowScope.TableHeader(
+    headerIcon: ImageVector,
+    weight: Float = 0.5f
+){
+    Box(
+        Modifier
+            .weight(weight)
+            .padding(
+                PaddingValues(
+                    vertical = 1.dp,
+                    horizontal = 1.dp
+                )
+            ),
+        contentAlignment = Alignment.Center
+    ) {
+        Icon(headerIcon, "",
+            modifier = Modifier
+                .padding(8.dp)
+        )
+    }
+}
+@OptIn(ExperimentalFoundationApi::class)
+@Composable
+fun RowScope.TableCell(
+    headerIcon: ImageVector,
+    weight: Float = 1f,
+    onClick: () -> Unit
+){
+    Box(
+        Modifier
+            .weight(weight)
+            .padding(
+                PaddingValues(
+                    vertical = 1.dp,
+                    horizontal = 1.dp
+                )
+            ),
+        contentAlignment = Alignment.Center
+    ) {
+        Icon(headerIcon, "",
+            modifier = Modifier
+                .padding(8.dp)
+                .onClick {
+                    onClick()
+                }
         )
     }
 }
