@@ -1,6 +1,6 @@
 package navigation
 
-import screens.LoginScreenComponent
+import screens.loginScreen.LoginScreenComponent
 import androidx.compose.runtime.Composable
 import com.arkivanov.decompose.ComponentContext
 import com.arkivanov.decompose.extensions.compose.jetbrains.stack.Children

@@ -17,70 +17,75 @@ import androidx.compose.ui.window.application
 import com.arkivanov.decompose.DefaultComponentContext
 import com.arkivanov.essenty.lifecycle.LifecycleRegistry
 import components.Indicator
+import kodeinDi.DiContainer
 import kotlinx.coroutines.delay
 import navigation.NavHostComponent
+import org.kodein.di.DIContainer
+import org.kodein.di.compose.withDI
 import java.io.File
 
 
 fun main() = application {
-    val lifecycle = LifecycleRegistry()
-    val root = NavHostComponent(DefaultComponentContext(lifecycle))
+    withDI(DiContainer.di) {
+        val lifecycle = LifecycleRegistry()
+        val root = NavHostComponent(DefaultComponentContext(lifecycle))
 
-    val rootFile = File(".Platforma")
+        val rootFile = File(".Platforma")
 
-    with(rootFile) {
-        if (!isDirectory)
-            mkdir()
-    }
-    var isSplashScreenShowing by remember { mutableStateOf(true) }
-    LaunchedEffect(Unit) {
-        delay(400)
-        isSplashScreenShowing = false
-    }
-    Window(
-        state = WindowState(
-            placement = WindowPlacement.Maximized
-        ),
-        title = "Платформа $applicationVersion",
-        onCloseRequest = { exitApplication() }
-    ) {
-        MaterialTheme(
-            colors = MaterialTheme.colors.copy(
-                primary = Color.Black,
-                onPrimary = Color.White,
-                onBackground = Color.Black
+        with(rootFile) {
+            if (!isDirectory)
+                mkdir()
+        }
+        var isSplashScreenShowing by remember { mutableStateOf(true) }
+        LaunchedEffect(Unit) {
+            delay(400)
+            isSplashScreenShowing = false
+        }
+        Window(
+            state = WindowState(
+                placement = WindowPlacement.Maximized
             ),
-            typography = Typography(
-                defaultFontFamily = FontFamily(
-                    Font(
-                        resource = "Roboto-Medium.ttf",
-                        weight = FontWeight.W400,
-                        style = FontStyle.Normal
+            title = "Платформа $applicationVersion",
+            onCloseRequest = { exitApplication() }
+        ) {
+            MaterialTheme(
+                colors = MaterialTheme.colors.copy(
+                    primary = Color.Black,
+                    onPrimary = Color.White,
+                    onBackground = Color.Black
+                ),
+                typography = Typography(
+                    defaultFontFamily = FontFamily(
+                        Font(
+                            resource = "Roboto-Medium.ttf",
+                            weight = FontWeight.W400,
+                            style = FontStyle.Normal
+                        )
                     )
                 )
-            )
-        ) {
-            if (isSplashScreenShowing) {
-                Box(
-                    Modifier
-                        .fillMaxSize(),
-                    contentAlignment = Alignment.Center
-                ) {
-                    Column(
+            ) {
+                if (isSplashScreenShowing) {
+                    Box(
                         Modifier
-                            .background(Color(217, 229, 232))
                             .fillMaxSize(),
-                        horizontalAlignment = Alignment.CenterHorizontally,
-                        verticalArrangement = Arrangement.Center
+                        contentAlignment = Alignment.Center
                     ) {
-                        Indicator(
-                            onCancelClick = {
-                            }
-                        )
+                        Column(
+                            Modifier
+                                .background(Color(217, 229, 232))
+                                .fillMaxSize(),
+                            horizontalAlignment = Alignment.CenterHorizontally,
+                            verticalArrangement = Arrangement.Center
+                        ) {
+                            Indicator(
+                                onCancelClick = {
+                                }
+                            )
+                        }
                     }
+                } else {
+                    root.render()
                 }
-            } else {
-                root.render()
             }
         }
     }
