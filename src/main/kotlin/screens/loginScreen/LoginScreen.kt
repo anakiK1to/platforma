@@ -28,6 +28,7 @@ import kotlinx.coroutines.launch
 import navigation.Component
 import org.kodein.di.compose.localDI
 import org.kodein.di.instance
+import storage.ApplicationLocalStorage
 
 
 class LoginScreenComponent(
@@ -37,15 +38,17 @@ class LoginScreenComponent(
 
     @Composable
     override fun render() {
+        val applicationLocalStorage: ApplicationLocalStorage by localDI().di.instance()
         LoginScreen(
-            onGoClicked
+            onGoClicked,
+            applicationLocalStorage
         )
     }
 }
 
 @Preview
 @Composable
-fun LoginScreen(onGoClicked: (Unit) -> Unit) {
+fun LoginScreen(onGoClicked: (Unit) -> Unit, applicationLocalStorage: ApplicationLocalStorage) {
     val loginScreenController: LoginScreenController by localDI().di.instance()
     var login by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
@@ -129,7 +132,7 @@ fun LoginScreen(onGoClicked: (Unit) -> Unit) {
             Button(
                 onClick = {
                     scope.launch {
-                        val authResponse = loginScreenController.sendAuthRequest(login, password)
+                        val authResponse = loginScreenController.sendAuthRequest(login, password, applicationLocalStorage)
                         if (authResponse == null) {
                             onGoClicked(println("auth completed"))
                         } else {

@@ -11,6 +11,9 @@ import com.arkivanov.decompose.ComponentContext
 import components.Indicator
 import kotlinx.coroutines.delay
 import navigation.Component
+import org.kodein.di.compose.localDI
+import org.kodein.di.instance
+import storage.ApplicationLocalStorage
 
 class MainScreenComponent(
     private val componentContext: ComponentContext,
@@ -19,19 +22,20 @@ class MainScreenComponent(
 
     @Composable
     override fun render() {
-
-        MainScreen(onGoBackClicked)
+        val applicationLocalStorage: ApplicationLocalStorage by localDI().di.instance()
+        MainScreen(onGoBackClicked, applicationLocalStorage)
     }
 }
 
 @Composable
-fun MainScreen(onGoBackClicked: () -> Unit) {
+fun MainScreen(onGoBackClicked: () -> Unit, applicationLocalStorage: ApplicationLocalStorage) {
     var uiInitializationCompleted by remember { mutableStateOf(false) }
 
     LaunchedEffect(Unit){
         uiInitializationCompleted = false
         delay(600)
         uiInitializationCompleted = true
+        println(applicationLocalStorage.currentToken)
     }
 
     if (!uiInitializationCompleted) {
