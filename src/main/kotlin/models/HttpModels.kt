@@ -39,8 +39,8 @@ data class PlatformApiResponse(
 @Serializable
 data class PlatformStructure(
     val floor: Int,
-    val firstPrisoner: ServerPrisonerModel,
-    val secondPrisoner: ServerPrisonerModel,
+    val firstPrisoner: ServerPrisonerModel?,
+    val secondPrisoner: ServerPrisonerModel?,
 )
 
 @Serializable

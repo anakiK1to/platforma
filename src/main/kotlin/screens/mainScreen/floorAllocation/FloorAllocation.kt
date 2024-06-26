@@ -208,18 +208,20 @@ fun FloorTable(
                         ) {
                             Column {
                                 Row {
-                                    TableCell(
-                                        "${platformStructure.firstPrisoner.firstName} ${platformStructure.firstPrisoner.lastName}",
-                                        color = Color.White,
-                                        weight = 1f
-                                    )
+                                    if (platformStructure.firstPrisoner != null)
+                                        TableCell(
+                                            "${platformStructure.firstPrisoner.firstName} ${platformStructure.firstPrisoner.lastName}",
+                                            color = Color.White,
+                                            weight = 1f
+                                        )
                                 }
                                 Row {
-                                    TableCell(
-                                        "${platformStructure.secondPrisoner.firstName} ${platformStructure.secondPrisoner.lastName}",
-                                        color = Color.White,
-                                        weight = 1f
-                                    )
+                                    if (platformStructure.secondPrisoner != null)
+                                        TableCell(
+                                            "${platformStructure.secondPrisoner.firstName} ${platformStructure.secondPrisoner.lastName}",
+                                            color = Color.White,
+                                            weight = 1f
+                                        )
                                 }
                             }
                         }
@@ -235,20 +237,22 @@ fun FloorTable(
                             contentAlignment = Alignment.Center
                         ) {
                             Column {
-                                Row {
-                                    TableCell(
-                                        platformStructure.firstPrisoner.rating.toString(),
-                                        color = Color.White,
-                                        weight = 1f
-                                    )
-                                }
-                                Row {
-                                    TableCell(
-                                        platformStructure.secondPrisoner.rating.toString(),
-                                        color = Color.White,
-                                        weight = 1f
-                                    )
-                                }
+                                if (platformStructure.firstPrisoner != null)
+                                    Row {
+                                        TableCell(
+                                            platformStructure.firstPrisoner.rating.toString(),
+                                            color = Color.White,
+                                            weight = 1f
+                                        )
+                                    }
+                                if (platformStructure.secondPrisoner != null)
+                                    Row {
+                                        TableCell(
+                                            platformStructure.secondPrisoner.rating.toString(),
+                                            color = Color.White,
+                                            weight = 1f
+                                        )
+                                    }
                             }
                         }
                         Box(
@@ -263,22 +267,24 @@ fun FloorTable(
                             contentAlignment = Alignment.Center
                         ) {
                             Column {
-                                Row {
-                                    ViolationsDropDownMenu(
-                                        availableViolations = violations,
-                                        onSelectViolate = { violation ->
-                                            onSelectViolate(violation, platformStructure.firstPrisoner.id)
-                                        }
-                                    )
-                                }
-                                Row {
-                                    ViolationsDropDownMenu(
-                                        availableViolations = violations,
-                                        onSelectViolate = { violation ->
-                                            onSelectViolate(violation, platformStructure.secondPrisoner.id)
-                                        }
-                                    )
-                                }
+                                if (platformStructure.firstPrisoner != null)
+                                    Row {
+                                        ViolationsDropDownMenu(
+                                            availableViolations = violations,
+                                            onSelectViolate = { violation ->
+                                                onSelectViolate(violation, platformStructure.firstPrisoner.id)
+                                            }
+                                        )
+                                    }
+                                if (platformStructure.secondPrisoner != null)
+                                    Row {
+                                        ViolationsDropDownMenu(
+                                            availableViolations = violations,
+                                            onSelectViolate = { violation ->
+                                                onSelectViolate(violation, platformStructure.secondPrisoner.id)
+                                            }
+                                        )
+                                    }
                             }
                         }
                         Box(
@@ -307,14 +313,15 @@ fun FloorTable(
                                         shape = RoundedCornerShape(12.dp),
                                         modifier = Modifier.width(60.dp).padding(vertical = 5.dp)
                                     )
-                                    IconButton(
-                                        onClick = {
-                                            onAdd(value.toInt(), platformStructure.firstPrisoner.id)
-                                        },
-                                        content = {
-                                            Icon(Icons.Default.Add, "")
-                                        }
-                                    )
+                                    if (platformStructure.firstPrisoner != null)
+                                        IconButton(
+                                            onClick = {
+                                                onAdd(value.toInt(), platformStructure.firstPrisoner.id)
+                                            },
+                                            content = {
+                                                Icon(Icons.Default.Add, "")
+                                            }
+                                        )
                                 }
                                 Row() {
                                     var value by remember { mutableStateOf("0") }
@@ -331,14 +338,15 @@ fun FloorTable(
                                         shape = RoundedCornerShape(12.dp),
                                         modifier = Modifier.width(60.dp).padding(vertical = 5.dp)
                                     )
-                                    IconButton(
-                                        onClick = {
-                                            onAdd(value.toInt(), platformStructure.secondPrisoner.id)
-                                        },
-                                        content = {
-                                            Icon(Icons.Default.Add, "")
-                                        }
-                                    )
+                                    if (platformStructure.secondPrisoner != null)
+                                        IconButton(
+                                            onClick = {
+                                                onAdd(value.toInt(), platformStructure.secondPrisoner.id)
+                                            },
+                                            content = {
+                                                Icon(Icons.Default.Add, "")
+                                            }
+                                        )
                                 }
                             }
                         }
