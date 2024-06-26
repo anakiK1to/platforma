@@ -17,12 +17,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 
 enum class MainScreenNavigation(val title: String) {
-    USER_MANAGEMENT("Пльзователи"),
+//    USER_MANAGEMENT("Пльзователи"),
     REGISTRATION("Регистрация"),
     MENU_CONFIGURATION("Меню"),
-    POINTS_MANAGEMENT("Баллы"),
-    NEW_ISSUE("Происшествие"),
-    FLOOR_ALLOCATION("Этажи")
+//    POINTS_MANAGEMENT("Баллы"),
+//    NEW_ISSUE("Происшествие"),
+    FLOOR_ALLOCATION("Баллы")
 }
 
 @Composable
@@ -30,32 +30,32 @@ fun NavigationPanel(onClick: (MainScreenNavigation) -> Unit) {
     val screens = MainScreenNavigation.entries.toTypedArray()
     var selectedItem by remember { mutableStateOf(0) }
     val icons = listOf(
-        Icons.Filled.Settings,
         Icons.Filled.Add,
         Icons.Filled.RestaurantMenu,
-        Icons.Filled.Timeline,
-        Icons.Filled.BugReport,
-        Icons.Filled.WbSunny
+        Icons.Filled.Settings,
+//        Icons.Filled.Timeline,
+//        Icons.Filled.BugReport,
+//        Icons.Filled.WbSunny
     )
     Row() {
         NavigationRail(Modifier.width(120.dp)) {
             screens.forEachIndexed { index, screen ->
                 when (screen) {
-                    MainScreenNavigation.USER_MANAGEMENT -> {
-
-                        NavigationRailItem(
-                            icon = { Icon(icons[index], contentDescription = "") },
-                            selected = selectedItem == index,
-                            onClick = {
-                                selectedItem = index
-                                onClick(screens[index])
-                            },
-                            label = {
-                                Text(screen.title)
-                            },
-                            modifier = Modifier.fillMaxWidth()
-                        )
-                    }
+//                    MainScreenNavigation.USER_MANAGEMENT -> {
+//
+//                        NavigationRailItem(
+//                            icon = { Icon(icons[index], contentDescription = "") },
+//                            selected = selectedItem == index,
+//                            onClick = {
+//                                selectedItem = index
+//                                onClick(screens[index])
+//                            },
+//                            label = {
+//                                Text(screen.title)
+//                            },
+//                            modifier = Modifier.fillMaxWidth()
+//                        )
+//                    }
 
                     MainScreenNavigation.REGISTRATION -> {
                         NavigationRailItem(
@@ -87,35 +87,35 @@ fun NavigationPanel(onClick: (MainScreenNavigation) -> Unit) {
                         )
                     }
 
-                    MainScreenNavigation.POINTS_MANAGEMENT -> {
-                        NavigationRailItem(
-                            icon = { Icon(icons[index], contentDescription = "") },
-                            selected = selectedItem == index,
-                            onClick = {
-                                selectedItem = index
-                                onClick(screens[index])
-                            },
-                            label = {
-                                Text(screen.title)
-                            },
-                            modifier = Modifier.fillMaxWidth()
-                        )
-                    }
+//                    MainScreenNavigation.POINTS_MANAGEMENT -> {
+//                        NavigationRailItem(
+//                            icon = { Icon(icons[index], contentDescription = "") },
+//                            selected = selectedItem == index,
+//                            onClick = {
+//                                selectedItem = index
+//                                onClick(screens[index])
+//                            },
+//                            label = {
+//                                Text(screen.title)
+//                            },
+//                            modifier = Modifier.fillMaxWidth()
+//                        )
+//                    }
 
-                    MainScreenNavigation.NEW_ISSUE -> {
-                        NavigationRailItem(
-                            icon = { Icon(icons[index], contentDescription = "") },
-                            selected = selectedItem == index,
-                            onClick = {
-                                selectedItem = index
-                                onClick(screens[index])
-                            },
-                            label = {
-                                Text(screen.title)
-                            },
-                            modifier = Modifier.fillMaxWidth()
-                        )
-                    }
+//                    MainScreenNavigation.NEW_ISSUE -> {
+//                        NavigationRailItem(
+//                            icon = { Icon(icons[index], contentDescription = "") },
+//                            selected = selectedItem == index,
+//                            onClick = {
+//                                selectedItem = index
+//                                onClick(screens[index])
+//                            },
+//                            label = {
+//                                Text(screen.title)
+//                            },
+//                            modifier = Modifier.fillMaxWidth()
+//                        )
+//                    }
 
                     MainScreenNavigation.FLOOR_ALLOCATION -> {
                         NavigationRailItem(

@@ -1,7 +1,5 @@
 package storage
 
-class ApplicationLocalStorage(
-
-){
+object ApplicationLocalStorage{
     var currentToken: String = ""
 }

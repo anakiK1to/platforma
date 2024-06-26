@@ -3,6 +3,9 @@ package kodeinDi
 import org.kodein.di.DI
 import org.kodein.di.bindSingleton
 import screens.loginScreen.LoginScreenController
+import screens.mainScreen.floorAllocation.FloorAllocationController
+import screens.mainScreen.menuConfiguration.MenuConfigurationController
+import screens.mainScreen.registrationScreen.RegistrationController
 import storage.ApplicationLocalStorage
 
 object DiContainer {
@@ -11,7 +14,13 @@ object DiContainer {
             LoginScreenController(this@DiContainer)
         }
         bindSingleton {
-            ApplicationLocalStorage()
+            MenuConfigurationController()
+        }
+        bindSingleton {
+            RegistrationController(this@DiContainer)
+        }
+        bindSingleton {
+            FloorAllocationController()
         }
     }
 }

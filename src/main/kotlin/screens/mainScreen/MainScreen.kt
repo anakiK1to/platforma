@@ -11,8 +11,9 @@ import com.arkivanov.decompose.ComponentContext
 import components.Indicator
 import kotlinx.coroutines.delay
 import navigation.Component
-import org.kodein.di.compose.localDI
-import org.kodein.di.instance
+import screens.mainScreen.floorAllocation.FloorAllocation
+import screens.mainScreen.menuConfiguration.MenuConfiguration
+import screens.mainScreen.registrationScreen.RegistrationScreen
 import storage.ApplicationLocalStorage
 
 class MainScreenComponent(
@@ -22,7 +23,7 @@ class MainScreenComponent(
 
     @Composable
     override fun render() {
-        val applicationLocalStorage: ApplicationLocalStorage by localDI().di.instance()
+        val applicationLocalStorage = ApplicationLocalStorage
         MainScreen(onGoBackClicked, applicationLocalStorage)
     }
 }
@@ -73,7 +74,6 @@ fun mainScreen() {
                     MenuConfiguration()
                 }
                 else -> {
-
                 }
             }
         }

@@ -38,7 +38,7 @@ class LoginScreenComponent(
 
     @Composable
     override fun render() {
-        val applicationLocalStorage: ApplicationLocalStorage by localDI().di.instance()
+        val applicationLocalStorage = ApplicationLocalStorage
         LoginScreen(
             onGoClicked,
             applicationLocalStorage

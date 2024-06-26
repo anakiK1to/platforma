@@ -93,6 +93,7 @@ fun RowScope.TableCell(
                 .onClick {
                     onClick()
                 }
+                .pointerHoverIcon(PointerIcon.Hand)
         )
     }
 }
