@@ -110,7 +110,12 @@ class RegistrationScreenTest {
 
 
         val registrationController = mock<RegistrationController>()
-        whenever(registrationController.getDishes()).thenReturn(listOf(mockDish))
+        whenever(registrationController.getDishes()).thenReturn(DishApiResponse(
+            content = listOf(mockDish),
+            totalCount = 1,
+            page = 1,
+            size = 10
+        ))
 
         composeTestRule.setContent {
             RegistrationScreen()
