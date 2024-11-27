@@ -9,6 +9,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.pointer.PointerIcon
 import androidx.compose.ui.input.pointer.pointerHoverIcon
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -33,7 +34,7 @@ fun FavouriteDishSelectionDropdownMenu(
     val buttonContent by derivedStateOf {
         selectedDish?.name ?: "Выберите блюдо"
     }
-    Box {
+    Box(Modifier.testTag("FavouriteDishDropdown")) {
         Button(
             onClick = { expanded = true },
             content = {
